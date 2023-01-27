@@ -19,11 +19,17 @@ Para detallar los atributos y respectivos cambios de un lote de hidrógeno se ha
 Cada vez que el productor elabora el activo, crea una instancia de esta estructura.
 
 Atributos:
-“id”: identificador del TRU.  Único
-“owner”: lista append-only que contiene los sucesivos propietarios del activo 
+
+“id”: identificador del TRU.  Único.
+
+“owner”: lista append-only que contiene los sucesivos propietarios del activo.
+
 “holder”: lista append-only que guarda los sucesivos portadores del activo.
+
 “hydrogenType”: color del activo, que debe ser de los tipos “green”, “yellow” o “pink”.
+
 “assetState”: que define si se ha obtenido Hidrógeno (“H”) o Amoníaco (“NH3”).
+
 “quantity”: que determina la cantidad de masa de Hidrógeno producido en el lote.
 
 
