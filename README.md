@@ -6,7 +6,7 @@ El hidrógeno verde es un combustible utilizado con el fin de obtener energía s
 
 El estado final del hidrógeno no depende de la metodología que se haya utilizado para obtenerlo. Por lo tanto, es necesario obtener soluciones que faciliten asentar las etapas afectan el estado del producto de una forma confiable, hasta llegar al consumidor final. De esta forma, se puede verificar el impacto ambiental del activo producido.
 
-Se ha realizado una implementación de trazabilidad con blockchain debido a la inmutabilidad, descentralización y transparencia que provee la tecnología. Este enfoque ya ha sido implementado exitosamente en cadenas de suministro a gran escala [1].
+Se ha realizado una implementación de trazabilidad con blockchain debido a la inmutabilidad, descentralización y transparencia que provee la tecnología. Este enfoque ya es conocido, el cual provee soluciones a problemáticas en cadenas de suministro [1].
 
 Se ha diseñado un código en el lenguaje Solidity, que principalmente es utilizado para desplegar contratos inteligentes en la plataforma Ethereum.
 
@@ -54,4 +54,4 @@ Se ha utilizado el standard de tokens fungibles ERC20.
 
 # Referencias
 
-[1] https://www.hyperledger.org/learn/publications/walmart-case-study
+[1] https://aws.amazon.com/blockchain/blockchain-for-supply-chain-track-and-trace/
