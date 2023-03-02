@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.4;
 
-/// Se utiliza tokens ERC20 de Open Zeppelin
+/// Se utiliza tokens ERC20 de Open Zeppelin.
 /// Se trabaja con la opción de que los tokens sean 'Burnable'.
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
@@ -35,7 +35,8 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
   address consumer_address = 0x6F6c6D9868d452EC580fC1422f47776a5C73676F;
 
   /*
-   * @dev constructor de un token específico para la aplicación,
+   * @dev
+   * Constructor de un token específico para la aplicación,
    * el cual estará respaldado por Hidrógeno físico, con nombre
    * 'GreenHydrogenToken' y ticker 'GHT'.
    */
@@ -52,7 +53,8 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
   }
 
   /*
-   * @dev 'TRU' (Traceable Resource Unit) es una estructura de datos que detalla los atributos
+   * @dev
+   *'TRU' (Traceable Resource Unit) es una estructura de datos que detalla los atributos
    * y cambios de un lote de Hidrógeno.
    * Cada vez que el productor elabora un lote del activo, crea una instancia de esta
    * estructura.
@@ -64,7 +66,7 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
     string[] owner; /// propietario del activo.
     string[] holder; /// persona física que porta el asset. Un ejemplo es el transportista.
     string hydrogenType; /// 'green', 'yellow', 'pink'.
-    string assetState; /// Hidrógeno ('H') o amoníaco ('NH3').
+    string assetState; /// Hidrógeno ('H2') o amoníaco ('NH3').
     uint quantity; /// masa total efectiva de Hidrógeno en el lote.
   }
 
