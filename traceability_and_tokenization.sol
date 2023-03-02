@@ -2,7 +2,8 @@
 
 pragma solidity ^0.8.4;
 
-/// se utiliza tokens ERC20 de Open Zeppelin, con la opción de que sean Burnable.
+/// Se utiliza tokens ERC20 de Open Zeppelin
+/// Se trabaja con la opción de que los tokens sean 'Burnable'.
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
@@ -10,18 +11,22 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
  * @author Franco Cerino - Carlos Alberto Peña Montenegro
  * @title Smart contract for traceability and tokenization of Hydrogen.
  * @dev
- * Trazabilidad:
+ * El contrato inteligente hace énfasis en dos aplicaciones:
+ * - Trazabilidad.
+ * Se asienta características y movimientos de los lotes de hidrógeno
+ * en la blockchain para contribuir a la transparencia de la cadena
+ * de suministro del activo. Blockchain permite esto ya que es una
+ * tecnología que provee una base de datos inmutable, descentralizada
+ * y transparente.
  *
- *
- * Tokeninación:
+ * - Tokeninación.
  * Utiliza las implementaciones de OpenZeppelin 'ERC20' y 'ERC20Burnable'.
  * 'ERC20' para crear tokens fungibles, los cuales estarán respaldados por un
  * activo físico, Hidrógeno en este caso.
- * Se a utilizado 'ERC20Burnable' porque la idea_ es que cuando el Hidrógeno
+ * Se a utilizado 'ERC20Burnable' porque la idea_ es que si el Hidrógeno
  * es consumido o deja de ser tenido en cuenta, en caso de haber emitido tokens
  * asociados, estos se puedan eliminar, para poder mantener una correspondencia
  * entre cantidad de tokens y cantidad total de Hidrógeno.
- *
  */
 contract GreenHydrogenContract is ERC20, ERC20Burnable {
   /// cambiar por las address a utilizar antes de desplegar el contrato
@@ -55,17 +60,17 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
    * para dar persistencia a los datos.
    */
   struct TRU {
-    uint id; /// id = orden en la lista "allTRU"
+    uint id; /// id = índice (u orden) del TRU en la lista 'allTRU'
     string[] owner; /// propietario del activo.
     string[] holder; /// persona física que porta el asset. Un ejemplo es el transportista.
-    string hydrogenType; /// "green", "yellow", "pink".
-    string assetState; /// Hidrógeno ("H") o amoníaco ("NH3").
+    string hydrogenType; /// 'green', 'yellow', 'pink'.
+    string assetState; /// Hidrógeno ('H') o amoníaco ('NH3').
     uint quantity; /// masa total efectiva de Hidrógeno en el lote.
   }
 
   /*
    * @dev
-   * Cada TRU se almacena en una lista append-only ”allTRU” (es una variable public,
+   * Cada 'TRU' se almacena en una lista append-only 'allTRU' (es una variable public,
    * para mayor transparencia) que contiene a todos los TRU creados.
    */
   TRU[] public allTRU;
@@ -82,6 +87,12 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
 
   /*
    * @dev
+   * Modificador que especifica que para que la función asociada sea ejecutada
+   * solo si se cumple que el atributo '_attribute' dado cumpla con el valor
+   * '_type'.
+   * '_attribute' puede ser 'owner' o 'holder'.
+   * Por ejemplo, puede ser usado si se quiere constatar que al momento de
+   * realizar una operación, el owner es el productor.
    */
   modifier requirement_TRU(
     uint _id,
@@ -89,22 +100,22 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
     string memory _type
   ) {
     if (
-      keccak256(abi.encodePacked((_attribute))) ==
-      keccak256(abi.encodePacked(("owner")))
+      keccak256(abi.encodePacked(_attribute)) ==
+      keccak256(abi.encodePacked("owner"))
     ) {
       require(
         keccak256(
-          abi.encodePacked((allTRU[_id].owner[allTRU[_id].owner.length - 1]))
-        ) == keccak256(abi.encodePacked((_type)))
+          abi.encodePacked(allTRU[_id].owner[allTRU[_id].owner.length - 1])
+        ) == keccak256(abi.encodePacked(_type))
       );
     } else if (
-      keccak256(abi.encodePacked((_attribute))) ==
-      keccak256(abi.encodePacked(("holder")))
+      keccak256(abi.encodePacked(_attribute)) ==
+      keccak256(abi.encodePacked("holder"))
     ) {
       require(
         keccak256(
-          abi.encodePacked((allTRU[_id].holder[allTRU[_id].holder.length - 1]))
-        ) == keccak256(abi.encodePacked((_type)))
+          abi.encodePacked(allTRU[_id].holder[allTRU[_id].holder.length - 1])
+        ) == keccak256(abi.encodePacked(_type))
       );
     }
     _;
@@ -124,19 +135,19 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
     uint _quantity
   ) external requirement_msg_sender(producer_address) {
     require(
-      keccak256(abi.encodePacked((_hydrogenType))) ==
-        keccak256(abi.encodePacked(("green"))) ||
-        keccak256(abi.encodePacked((_hydrogenType))) ==
-        keccak256(abi.encodePacked(("yellow"))) ||
-        keccak256(abi.encodePacked((_hydrogenType))) ==
-        keccak256(abi.encodePacked(("pink")))
+      keccak256(abi.encodePacked(_hydrogenType)) ==
+        keccak256(abi.encodePacked("green")) ||
+        keccak256(abi.encodePacked(_hydrogenType)) ==
+        keccak256(abi.encodePacked("yellow")) ||
+        keccak256(abi.encodePacked(_hydrogenType)) ==
+        keccak256(abi.encodePacked("pink"))
     );
 
     require(
-      keccak256(abi.encodePacked((_assetState))) ==
-        keccak256(abi.encodePacked(("H2"))) ||
-        keccak256(abi.encodePacked((_assetState))) ==
-        keccak256(abi.encodePacked(("NH3")))
+      keccak256(abi.encodePacked(_assetState)) ==
+        keccak256(abi.encodePacked("H2")) ||
+        keccak256(abi.encodePacked(_assetState)) ==
+        keccak256(abi.encodePacked("NH3"))
     );
 
     string[] memory _producer = new string[](1);
@@ -239,7 +250,7 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
 
     if (
       keccak256(abi.encodePacked(allTRU[_id].hydrogenType)) ==
-      keccak256(abi.encodePacked(("green")))
+      keccak256(abi.encodePacked("green"))
     ) {
       mint(consumer_address, 100 * 10 ** 18 * allTRU[_id].quantity);
     }
