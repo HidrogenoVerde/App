@@ -54,4 +54,5 @@ Se ha utilizado el standard de tokens fungibles ERC20.
 ## Referencias
 
 [1] Blockchain For Supply Chain Track and Trace. AWS. https://aws.amazon.com/blockchain/blockchain-for-supply-chain-track-and-trace/
+
 [2] Sistema de seguimiento para cadenas de suministro basado en blockchain, 2018. https://repositorio.uniandes.edu.co/bitstream/handle/1992/48751/u833346.pdf?sequence=1&isAllowed=y
