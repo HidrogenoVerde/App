@@ -1,4 +1,4 @@
-# Smart Contract para Trazabilidad de Hidrógeno Verde - Blockchain Innova
+# Smart Contract para Trazabilidad de Hidrógeno Verde
 
 ## Descripción
 
