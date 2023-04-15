@@ -62,7 +62,7 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
    * para dar persistencia a los datos.
    */
   struct TRU {
-    uint id; /// id = índice (u orden) del TRU en la lista 'allTRU'
+    uint id; /// id = índice (u orden) del TRU en la lista 'allTRU'.
     string[] owner; /// propietario del activo.
     string[] holder; /// persona física que porta el asset. Un ejemplo es el transportista.
     string hydrogenType; /// 'green', 'yellow', 'pink'.
@@ -129,7 +129,7 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
    * El tipo de Hidrógeno debe ser verde ('green'), amarillo ('yellow')
    * o rosa ('pink').
    * Debe estar en estado puro ('H2') o como Amoniaco ('NH3').
-   * La función solo puede ser ejecutada por el productor ('producer_address')
+   * La función solo puede ser ejecutada por el productor ('producer_address').
    */
   function createTRU(
     string memory _hydrogenType,
