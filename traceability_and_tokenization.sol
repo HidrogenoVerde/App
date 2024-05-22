@@ -23,9 +23,9 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
  * Utiliza las implementaciones de OpenZeppelin 'ERC20' y 'ERC20Burnable'.
  * 'ERC20' para crear tokens fungibles, los cuales estarán respaldados por un
  * activo físico, Hidrógeno en este caso.
- * Se a utilizado 'ERC20Burnable' porque la idea_ es que si el Hidrógeno
+ * Se ha utilizado 'ERC20Burnable' con la idea de que si el Hidrógeno
  * es consumido o deja de ser tenido en cuenta, en caso de haber emitido tokens
- * asociados, estos se puedan eliminar, para poder mantener una correspondencia
+ * asociados, estos se puedan eliminar para poder mantener una correspondencia
  * entre cantidad de tokens y cantidad total de Hidrógeno.
  */
 contract GreenHydrogenContract is ERC20, ERC20Burnable {
